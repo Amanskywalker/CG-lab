@@ -1,1 +1,1 @@
-gcc -o cube cube.c -lglut -lGLU
+gcc -o cube cube.c -lglut -lGLU -lGL
