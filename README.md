@@ -14,5 +14,5 @@ Written according to linux system (Written on Ubuntu 14.04)
 
 ## Additional Instructions for Specific Programs
 ### lp1
-  - It take the value of n from the command line
-    eg: `./lp1 3` where n=3 
+  - Can Override the n value (default = 0) by passing a number as commnd line parameter 
+    eg: `./lp1 3` where n=3
