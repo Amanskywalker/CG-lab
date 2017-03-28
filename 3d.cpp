@@ -1,12 +1,12 @@
-#include <string.h>
 #include <stdlib.h>
-#include <stdio.h>
 #include <GL/glut.h>
 #include <GL/gl.h>
 
-int n=0,j=0;
-GLfloat v[4][3]={{0,1,-1},{1,-1,-1},{0,0,1},{-1,-1,-1}};
+int n;
+// tetrahedron coordinate
+GLfloat v[4][3]={{0,0,1},{0,1,-1},{-1,-1,-1},{1,-1,-1}};
 
+// generate a single triangle of side of a tetrahedron
 void triangle(GLfloat *a, GLfloat *b, GLfloat *c)
 {
     glColor3f(1,0,0);
@@ -17,24 +17,22 @@ void triangle(GLfloat *a, GLfloat *b, GLfloat *c)
     glVertex2fv(c);
 }
 
+// generate the tetrahedron
 void tertrahedron(GLfloat *a, GLfloat *b, GLfloat *c, GLfloat *d)
 {
-    glColor3f(0.5,0.5,0);
     triangle(a,b,c);
-    glColor3f(1,1,0);
     triangle(a,d,c);
-    glColor3f(0,0.5,0.5);
     triangle(b,d,c);
-    glColor3f(0,1,1);
     triangle(c,b,a);
 }
 
+// generate the coordinate of smaller tetrahedron
 void divide_tetra(GLfloat *a, GLfloat *b, GLfloat *c, GLfloat *d, int m)
 {
     GLfloat mid[6][3];
     if(m>0)
     {
-        for (j = 0; j < 3; ++j)
+        for (int j = 0; j < 3; ++j)
         {
             mid[0][j]=(a[j]+b[j])/2;
             mid[1][j]=(b[j]+d[j])/2;
@@ -63,16 +61,17 @@ void display()
 
 void myinit()
 {
-    glClear(GL_COLOR_BUFFER_BIT);
-    //glClear(1,1,1,1);
+    glClearColor(1,1,1,0.5);        // set 1,1,1 for white background, 0,0,0 for black background and 0-1 transparent
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(-1.0,1.0,-1.0,-1.0,1.0,-1.0);
+    glOrtho(-1.0,1.0,-1.0,1.0,-1.0,1.0);
     glMatrixMode(GL_MODELVIEW);
 }
 
 int main(int argc, char* argv[])
-{   glutInit(&argc, argv);
+{
+    n = atoi(argv[1]);
+    glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_SINGLE|GLUT_RGB|GLUT_DEPTH);
     glutCreateWindow("3D recursive gasket");
     glutInitWindowSize(500,500);
