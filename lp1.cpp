@@ -70,7 +70,8 @@ void myinit()
 
 int main(int argc, char* argv[])
 {
-    n = atoi(argv[1]);
+    if (argc == 2)
+        n = atoi(argv[1]);
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_SINGLE|GLUT_RGB|GLUT_DEPTH);
     glutCreateWindow("3D recursive gasket");
