@@ -1,3 +1,5 @@
+/*Program to recursively subdivide a tetrahedron to from 3D Sierpinski gasket.
+  The number of recursive steps is to be specified by the user.*/
 #include <stdlib.h>
 #include <GL/glut.h>
 #include <GL/gl.h>
